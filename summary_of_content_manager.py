@@ -10,10 +10,16 @@ import json
 
 
 # Load configuration for agents
-config_list = autogen.config_list_from_json(
-    env_or_file="OAI_CONFIG_LIST.json",
-    filter_dict={"model": "gpt-4o"},
-)
+# 
+
+config_list = [
+    {
+        "model": "llama3.1",
+        "api_type": "ollama",
+        "client_host": "http://localhost:11434",
+        "timeout": 30,
+    }
+]
 llm_config = {"config_list": config_list}
 
 # Define the agents
@@ -124,7 +130,7 @@ UserProxy.initiate_chats(
     [
         {
             "recipient": manager,
-            "message": "message": "Please list all files in the repository: https://github.com/Zohreh6384NKH/AutoGen_tutorial"
+            "message": "Please list all files in the repository: https://github.com/Zohreh6384NKH/AutoGen_tutorial"
             "and fetch the content of the files by the file_listing_agent.then you summarize the content of each file name and return two sentences summary.",
             "clear_history": False,
             "silent": False,
